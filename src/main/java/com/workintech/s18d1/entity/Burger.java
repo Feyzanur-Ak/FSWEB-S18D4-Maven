@@ -2,8 +2,9 @@ package com.workintech.s18d1.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
-
+@Data
 @Entity
 public class Burger {
 
@@ -14,7 +15,7 @@ public class Burger {
     @Column(name="name")
     private String name;
     @Column(name="price")
-    private double price;
+    private Double price;
 
     @Column(name="is_vegan")
     private boolean isVegan;
