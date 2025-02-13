@@ -1,6 +1,7 @@
 package com.workintech.s18d1.exceptions;
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,5 +13,10 @@ public class BurgerErrorResponse {
     private String message;
     private  long timeStamp;
 
+    public BurgerErrorResponse(String message) {
+        this.status = 400;
+        this.message = message;
+        this.timeStamp = System.currentTimeMillis();
+    }
 
 }

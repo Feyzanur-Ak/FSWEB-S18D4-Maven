@@ -25,6 +25,11 @@ public class Burger {
     @Column(name="contents")
     private String contents;
 
+    public boolean getIsVegan() {
+        return this.isVegan;
+    }
 
-
+    public void setIsVegan(final boolean isVegan) {
+        this.isVegan = isVegan;
+    }
 }

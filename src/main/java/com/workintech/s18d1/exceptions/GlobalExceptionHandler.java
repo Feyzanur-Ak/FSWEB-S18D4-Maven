@@ -10,8 +10,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     private ResponseEntity<BurgerErrorResponse> burgerHandlerException (BurgerException burgerException){
-        BurgerErrorResponse errorResponse=new BurgerErrorResponse(burgerException.getStatus().value(),burgerException.getMessage(),System.currentTimeMillis());
-        return new ResponseEntity<>(errorResponse, burgerException.getStatus());
+        BurgerErrorResponse errorResponse=new BurgerErrorResponse(burgerException.getHttpStatus().value(),burgerException.getMessage(),System.currentTimeMillis());
+        return new ResponseEntity<>(errorResponse, burgerException.getHttpStatus());
     }
 
 
