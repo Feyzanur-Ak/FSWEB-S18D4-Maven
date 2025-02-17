@@ -15,25 +15,22 @@ import java.util.List;
 @Repository
 public class BurgerDaoImpl implements BurgerDao {
 
-
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public BurgerDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-
     @Override
     public List<Burger> findAll() {
-        TypedQuery<Burger> query=entityManager.createQuery("SELECT b FROM Burger b", Burger.class);
+        TypedQuery<Burger> query = entityManager.createQuery("SELECT b FROM Burger b", Burger.class);
         return query.getResultList();
     }
 
     @Transactional
     @Override
     public Burger save(Burger burger) {
-        // Her zaman persist çağrılıyor
         entityManager.persist(burger);
         return burger;
     }
@@ -47,6 +44,7 @@ public class BurgerDaoImpl implements BurgerDao {
         return burger;
     }
 
+    @Override
     public List<Burger> findByPrice(double price) {
         TypedQuery<Burger> query = entityManager.createQuery(
                 "SELECT b FROM Burger b WHERE b.price > :price ORDER BY b.price DESC", Burger.class);
@@ -73,7 +71,7 @@ public class BurgerDaoImpl implements BurgerDao {
     @Transactional
     @Override
     public Burger update(Burger burger) {
-        return entityManager.merge(burger); // Var olan kaydı günceller
+        return entityManager.merge(burger);
     }
 
     @Transactional
@@ -81,8 +79,8 @@ public class BurgerDaoImpl implements BurgerDao {
     public Burger remove(Long id) {
         Burger burger = entityManager.find(Burger.class, id);
         if (burger != null) {
-            entityManager.remove(burger); // Kaydı sil
+            entityManager.remove(burger);
         }
         return burger;
-}
+    }
 }
